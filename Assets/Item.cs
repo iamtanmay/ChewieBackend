@@ -3,57 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Backend Item Instance
-/// </summary>
-[System.Serializable]
-public struct ItemBackend
-{
-    /// <summary>
-    /// Core instance data, synchronized with Frontend
-    /// </summary>
-    #region Core
-    public uint ID_Instance;
-    public uint ID_Template;
-    public uint ID_Mutable;
-    public uint ID_Inventory;
-    public Vector3 rel_pos, rot;
-    #endregion
-
-    public ItemBackend(uint iInstance, uint iTemplate, uint iMutable, uint iInventory, Vector3 irel_pos, Vector3 irot)        
-    {
-        ID_Instance = iInstance;
-        ID_Template = iTemplate;
-        ID_Mutable = iMutable;
-        ID_Inventory = iInventory;
-        rel_pos = irel_pos;
-        rot = irot;
-    }
-}
-
-/// <summary>
-/// Base for all Attributes
-/// </summary>
-public interface Attributes
-{
-    uint ID { get; set; }
-    string name { get; set; }
-    Attributes MergeAttributes(Attributes mutable);
-}
-
-/// <summary>
-/// Attributes for all Items
-/// List of ingredient template IDs and amounts to create Item
-/// </summary>
-public interface ItemAttributes: Attributes
-{
-    Dictionary<uint, uint> recipeIngredients { get; set; }
-}
-
-/// <summary>
 /// Frontend Item instance
 /// </summary>
 [System.Serializable]
-public abstract class Item : Interactable
+public class Item : Interactable
 {
     /// <summary>
     /// Core instance data, synchronized with Backend
@@ -99,6 +52,11 @@ public abstract class Item : Interactable
         rigid = GetComponent<Rigidbody>();
         itemCollider = GetComponent<Collider>();
         this.enabled = false;
+    }
+
+    //Pick it up if its dropped, try to steal it if its not owned by character
+    public override void Interact(uint instanceID)
+    {
     }
 
     public bool Equals(Item item)

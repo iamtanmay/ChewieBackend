@@ -67,7 +67,7 @@ public class Inventory : MonoBehaviour
             uint instanceID = BackendItemCreate(iID, ID);
 
             //Get the object template ID
-            ItemBackend temp = BackendGetItem(instanceID);
+            BackendItem temp = BackendGetItem(instanceID);
 
             //Create new Frontend Item from the ItemManager
             Item tItem = itemManager.CreateItem(temp.ID_Template);

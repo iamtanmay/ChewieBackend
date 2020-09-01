@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Item pool manager
+//Comprehensive Item management
 public class ItemManager : MonoBehaviour
 {
+    //Backend
+    Backend backend;
+
+    //Item pools
     public List<Item> templates;
     public List<uint> poolSizes;
     Dictionary<uint, List<Item>> pools;
@@ -29,4 +33,10 @@ public class ItemManager : MonoBehaviour
         Item newItem = GameObject.Instantiate<Item>(templateDictionary[templateID]);
         return newItem;
     }
+
+    //public Item GetItem(uint instanceID)
+    //{
+    //    Item newItem = GameObject.Instantiate<Item>(templateDictionary[templateID]);
+    //    return newItem;
+    //}
 }
