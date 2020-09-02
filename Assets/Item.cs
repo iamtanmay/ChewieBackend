@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Frontend Item instance
+/// Frontend Item base. Child classes must define the mutable method to create unique items
 /// </summary>
 [System.Serializable]
-public class Item : Interactable
+public abstract class Item : Interactable
 {
     /// <summary>
     /// Core instance data, synchronized with Backend
@@ -45,7 +45,7 @@ public class Item : Interactable
     /// </summary>
     public MountSlot inventorySlot;
 
-    public ItemManager mgr;
+    public ObjectManager mgr;
 
     public void Start()
     {
@@ -54,10 +54,8 @@ public class Item : Interactable
         this.enabled = false;
     }
 
-    //Pick it up if its dropped, try to steal it if its not owned by character
-    public override void Interact(uint instanceID)
-    {
-    }
+    //Allows for creation of Mutable data
+    public abstract void ApplyMutable();
 
     public bool Equals(Item item)
     {

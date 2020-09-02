@@ -10,20 +10,12 @@ public class Inventory : MonoBehaviour
     public uint ID;
 
     public Transform ManageHub;
-    public ItemManager itemManager;
+    public ObjectManager itemManager;
     public BackendInventory backend;
     public MountingSystem mounts;
     public int availableslots = 0;
 
-    Delegate_Backend_CreateItem BackendItemCreate;
-    Delegate_Backend_DestroyItem BackendItemDelete;
-    Delegate_Backend_GetItem BackendGetItem;
-    Delegate_Backend_MoveItem BackendMoveItem;
 
-    Delegate_Backend_GetInventory BackendGetInventory;
-    Delegate_Backend_PutInventory BackendPutInventory;
-    Delegate_Backend_CreateInventory BackendCreateInventory;
-    Delegate_Backend_DeleteInventory BackendDeleteInventory;
 
     /// <summary>
     /// Add Item via frontend
